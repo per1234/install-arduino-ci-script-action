@@ -1,0 +1,19 @@
+# https://docs.github.com/en/free-pro-team@latest/actions/creating-actions/creating-a-composite-run-steps-action
+name: Install arduino-ci-script
+description: Installs the latest version of per1234/arduino-ci-script
+inputs:
+  installation-path:
+    description: Path to install the script to. Relative paths are relative to $GITHUB_WORKSPACE
+    required: true
+runs:
+  using: composite
+  steps:
+    - shell: bash
+      run: |
+        # install arduino-ci-script
+        git clone https://github.com/per1234/arduino-ci-script.git "${{ inputs.installation-path }}"
+        cd "${{ inputs.installation-path }}"
+        # Get new tags from the remote
+        git fetch --tags
+        # Checkout the latest tag
+        git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
