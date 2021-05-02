@@ -9,7 +9,7 @@ Please see [action.yml](./action.yml) for the documentation of the action's inpu
 ## Example usage
 
 ```yaml
-- uses: per1234/install-arduino-ci-script-action@main
+- uses: per1234/install-arduino-ci-script-action@v1
   with:
     installation-path: extras/ci/tools/arduino-ci-script
 ```
